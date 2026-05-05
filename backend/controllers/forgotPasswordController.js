@@ -3,23 +3,21 @@ const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const bcrypt = require('bcryptjs');
 
-// Store reset tokens temporarily
 const resetTokens = {};
 
-// Send reset email
 const forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
     const user = await User.findOne({ email });
     if (!user) return res.status(404).json({ message: 'No account found with this email' });
 
-    // Generate token
     const token = crypto.randomBytes(32).toString('hex');
-    resetTokens[token] = { email, expires: Date.now() + 3600000 }; // 1 hour
+    resetTokens[token] = { email, expires: Date.now() + 3600000 };
 
-    // Send email
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
@@ -53,7 +51,6 @@ const forgotPassword = async (req, res) => {
   }
 };
 
-// Reset password
 const resetPassword = async (req, res) => {
   try {
     const { token, password } = req.body;
