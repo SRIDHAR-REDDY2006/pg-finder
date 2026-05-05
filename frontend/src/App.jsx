@@ -7,6 +7,8 @@ import PGDetail from './pages/PGDetail'
 import AddPG from './pages/AddPG'
 import OwnerDashboard from './pages/OwnerDashboard'
 import AdminDashboard from './pages/AdminDashboard'
+import ForgotPassword from './pages/ForgotPassword'
+import ResetPassword from './pages/ResetPassword'
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/pg/:id' element={<PGDetail />} />
         <Route path='/add-pg' element={<AddPG />} />
+        <Route path='/forgot-password' element={<ForgotPassword />} />
+<Route path='/reset-password/:token' element={<ResetPassword />} />
         <Route path='/dashboard' element={<OwnerDashboard />} />
       </Routes>
     </>

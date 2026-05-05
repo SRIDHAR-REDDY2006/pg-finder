@@ -67,6 +67,7 @@ const Login = () => {
 
         <button style={styles.btn} onClick={handleSubmit}>Login</button>
         <p style={styles.text}>Don't have an account? <Link to='/register'>Register</Link></p>
+<p style={styles.text}><Link to='/forgot-password'>Forgot Password?</Link></p>
       </div>
     </div>
   )
